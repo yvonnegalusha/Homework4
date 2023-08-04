@@ -1,0 +1,22 @@
+This data was downloaded by Samuel Burer (samuel-burer@uiowa.edu) from
+BoxOfficeMojo.com on September 2, 2019. According to the rights provided
+by BoxOfficeMojo.com, this data should be used only for this class.
+Please do not share the data with others!
+
+The variables in the data are as follows:
+
+    OpeningDate     (Date)      : release date of the movie
+    Title           (character) : title of the movie
+    Studio          (factor)    : studio which produced the movie
+    OpeningGross    (integer)   : gross American ticket sales (in USD) for
+                                  the movie on its opening weekend
+    OpeningTheaters (integer)   : how many screens in American the movie was
+                                  shown on during the movie's opening weekend
+    TotalGross      (integer)   : gross American ticket sales (in USD) for
+                                  the movie over its entire time in movie
+                                  theaters
+    TotalTheaters   (integer)   : how many screens in American the movie was
+                                  shown on during its entire time in movie
+                                  theaters
+
+There are no missing values present in this data.
