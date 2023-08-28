@@ -6,7 +6,7 @@ output: html_notebook
 | Homework 4                     |                Data Analysis with R |
 | :---                           |                                ---: |
 | Due by 11:59 PM on Wed Sep 20  | Business Analytics Graduate Program |
-| Submit via codePost              |                 BAIS:6060 Fall 2023 |
+| Submit via codePost            |                 BAIS:6060 Fall 2023 |
 
 # Instructions
 
