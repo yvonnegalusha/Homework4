@@ -27,19 +27,28 @@ histogram); I will indicate when to do this.
 **Big Hint!** The exercises below ask you to save your outputs to PNGs
 files. In general, get into the habit of first exporting your graphic
 with `ggsave(...)` *before* checking to see if the graphic looks correct.
-The plot within an R notebook will look different than the final output
-file, and yet the output file should be considered the final version
-(since, for example, it could be added to a report). Your homework will
-be graded by regenerating the graphics files from your notebook. There
-is no need to upload your output files to GitHub.
+The plot within an R notebook will look sometimes different than the final 
+output file, and yet the output file should be considered the final version
+(since, for example, it could be added to a report). 
+
+Note, on ##1 the focus is on different types of graphs, not complete
+well-formatted graphs. In fact, you will see some overlap of values and
+numbers left in Scientific format. While ##2 the focus is on creating a 
+complete, good quality data visualization. When you do the class project, 
+your graphs should follow this example, although they may not be as complex,
+depending upon your analysis.
 
 # Exercises
 
 ```{r}
-# Load some libraries. You may need additional ones
+
+# Load libraries.
 library(readr)
 library(forcats)
 suppressPackageStartupMessages(library(dplyr))
+
+library(ggplot2)
+library(scales)
 
 ```
 
@@ -49,6 +58,7 @@ CSV file, which matches the solution of the previous homework. Then
 complete the exercises below:
 
 ```{r}
+
 my_col_types <- cols(
     OpeningDate = col_date(),
     Title = col_character(),
@@ -66,6 +76,7 @@ new_levels <- setdiff(new_levels, "Other")
 new_levels <- sort(new_levels)
 new_levels <- c(new_levels, "Other")
 df <- mutate(df, Studio = fct_relevel(Studio, new_levels))
+
 ```
 
 ## #1
@@ -75,35 +86,43 @@ Complete the following *without* changing the contents of `df`.
 ### (a)
 
 Create a graphic based on a single integer/numeric/double column
-of data. (Do not use two or more columns to build this graphic.) You
-can choose the column and the type of graphic. Export the graphic to
-a PNG file named `1a.png` via the `ggsave(...)` command with option
-`dpi=600`.
+of data. (Do not use two or more columns to build this graphic.) Use
+GrossRatio as a natural log. Export the graphic to a PNG file named
+`1a.png` via the `ggsave(...)` command with options width of 6 inches, 
+height of 4 inches, and dpi of 600 pixels.
 
 ```{r}
+
+
 
 ```
 
 ### (b)
 
-Create a graphic based on a single factor column of data. (Do
-not use two or more columns to build this graphic.) You can choose the
-column and the type of graphic. Export the graphic to a PNG file named
-`1b.png` via the `ggsave(...)` command with option `dpi=600`.
+Create a bar graph based on a single factor column of data. (Do
+not use two or more columns to build this graphic.) Use the Studio
+column. Export the graphic to a PNG file named `1b.png` via the 
+`ggsave(...)` command with options width of 6 inches, 
+height of 4 inches, and dpi of 600 pixels.
 
 ```{r}
+
+
 
 ```
 
 ### (c)
 
-Create a scatter plot based on exactly two
-integer/numeric/double columns of data. (Do not use three or more
-columns to build this graphic.) You can choose the columns. Export the
-graphic to a PNG file named `1c.png` via the `ggsave(...)` command with
-option `dpi=600`.
+Create a scatter plot based on exactly two integer/numeric/double 
+columns of data. (Do not use three or more columns to build this 
+graphic.) Use OpeningGross and TotalGross as the columns. Export 
+the graphic to a PNG file named `1c.png` via the `ggsave(...)` 
+command with options width of 6 inches, height of 4 inches, and dpi 
+of 600 pixels.
 
 ```{r}
+
+
 
 ```
 
@@ -111,40 +130,57 @@ option `dpi=600`.
 
 Create a heatmap based on exactly two integer/numeric/double
 columns of data. (Do not use three or more columns to build this
-graphic.) You can choose the columns. Export the graphic to a PNG file
-named `1d.png` via the `ggsave(...)` command with option `dpi=600`.
+graphic.) Use TotalTheaters and GrossRatio as the columns. Export 
+the graphic to a PNG file named `1d.png` via the `ggsave(...)` 
+command with options width of 6 inches, height of 4 inches, and dpi 
+of 600 pixels.
 
 ```{r}
+
+
 
 ```
 
 ### (e)
 
 Create boxplots of an integer/numeric/double column on a log
-scale against a factor column. You can choose the columns. Export the
-graphic to a PNG file named `1e.png` via the `ggsave(...)` command with
-option `dpi=600`.
+scale against a factor column. Use Stamina and OpeningGross as the
+columns. Export the graphic to a PNG file named `1e.png` via the 
+`ggsave(...)` command with options width of 6 inches, height of 4 
+inches, and dpi of 600 pixels.
 
 ```{r}
+
+
 
 ```
 
 ### (f)
 
 Use faceting to create a graphic involving exactly two factor
-columns. (Do not use three or more columns to build this graphic.)
-Export the graphic to a PNG file named `1f.png` via the `ggsave(...)`
-command with option `dpi=600`.
+columns. (Do not use three or more columns to build this graphic.) Stamina
+column levels should be the column groups on the graph. Export the graphic 
+to a PNG file named `1f.png` via the `ggsave(...)` command with options width 
+of 6 inches, height of 4 inches, and dpi of 600 pixels.
 
 ```{r}
+
+
 
 ```
 
 ## #2
 
 Without changing the contents of df, create a graphic involving three
-or more columns of data. You can choose all features of the graphic, but
-please adhere to the following rules:
+or more columns of data. "Total Gross Sales" should be on the vertical
+axis, "Number of Theaters on Opening Weekend" on the horizontal axis, and
+the title should be "Not All Blockbusters Have Staying Power". Then the
+legend should be "Staying Power" with values of Stronger, Strong, Weaker,
+and Weak. To help in auto-grading, the small value label on the vertical
+axis should be $100,000 and the high value should be $1,000,000,000. Then
+on the horizontal axis the small value should be 0 and the high value
+should be 4000. Also, please adhere to the following rules. These should
+always be followed to produce high quality data visualizations.
 
 - Produce the graphic with the following audience in mind: a colleague,
 friend, or family member who is familiar with movies and who has
@@ -168,10 +204,32 @@ amounts.
 sure text does not overlap.
 
 - Export the graphic to a PNG file named `2.png` via the `ggsave(...)`
-command with option `dpi=600`. Also use options `width=6` and `height=4`
-unless you have a good reason to deviate from these defaults. (Making
+command with option `dpi=600`. Also use options `width=7` and `height=4`.
+Default is width of 6 and height of 4, but I am deviating from these 
+defaults to allow for the legend and better visual appeal. (Making
 the graphic easier to read and understand is a good reason to deviate.)
 
 ```{r}
+
+# Create initial plot with 3 columns of data, transparency of 40%, and
+# main and x titles
+
+
+
+# Update y axis
+
+
+
+# Update size legend, using scale_color_hue function
+
+
+
+# Change font characteristics of titles, use size 16 with bold format
+
+
+
+# Save plot with name 2.png
+
+
 
 ```
